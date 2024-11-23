@@ -1,4 +1,8 @@
-# p5.js Template
+# Milestone 1
+## IDEA1 an electronic claw machine
+
+![clawmachine](clawmachine.png)
+Use the joystick element to control the gripper on the screen, and then set a button to be pressed to grab downwards.
 
 This is a README file that can be used to describe and document your assignment.
 
