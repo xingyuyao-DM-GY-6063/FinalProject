@@ -35,3 +35,8 @@ This project combines p5.js visuals with Arduino-based physical computing to cre
 
 
 ## IDEA3 Music Visualization
+**LED Feedback for Synced Effects**  
+- Usage: Synchronize LEDs with the music's beat or visualization effects.  
+- LEDs could blink or pulse with the bassline or other key features of the music.LED 
+**Implementation**  
+p5.js analyzes the audio, identifies beats, and sends signals back to Arduino to control LED patterns.p5.js
