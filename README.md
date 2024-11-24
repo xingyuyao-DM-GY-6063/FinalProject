@@ -5,40 +5,28 @@
 - Use the joystick element to control the gripper on the screen, and then set a button to be pressed to grab downwards.
 - I will explore integrating Arduino for controlling the joystick and button inputs, while p5.js handles the visual representation of the claw machine and the objects to grab. 
 - Adding some sound effects:
-1. **Background Music**
-
-
+1. **Background Music**  
 Type: Soft arcade style music that creates a playground atmosphere.
 Trigger Time: Played when user starts the game, and looped until the end of the game.
 
-2. **Grabber Movement**
-
-
-Type: Mechanical sliding sound effect that mimics the sound of a gripper moving on a track.
+2. **Grabber Movement**  
+Type: Mechanical sliding sound effect that mimics the sound of a gripper moving on a track.  
 Trigger Time: When user use joystick to control the gripper.
 
-3. **Button Press**
-
-
-Type: “click” sound, simulates the sound feedback of a real button.
+3. **Button Press**  
+Type: “click” sound, simulates the sound feedback of a real button.  
 Trigger: When user presses the gripper button.
 
-4. **Gripper Lowering**
-
-
-Type: Mechanical arm “click” sound, with metallic texture.
+4. **Gripper Lowering**  
+Type: Mechanical arm “click” sound, with metallic texture.  
 Trigger Time: When the gripper starts to fall.
 
-5. **Successful Grab Sound**
-
-
-Type: A light victory sound or a short cheer.
+5. **Successful Grab Sound**  
+Type: A light victory sound or a short cheer.  
 Trigger Time: When the gripper successfully grabs an item.
 
-6. **Failed Grab Sound**
-
-
-Type: A muffled “oops” sound or a humorous miss sound.
+6. **Failed Grab Sound**  
+Type: A muffled “oops” sound or a humorous miss sound.  
 Triggered when the grabber fails to grab an item.
 
 ## IDEA2 Fireworks & LEDs
