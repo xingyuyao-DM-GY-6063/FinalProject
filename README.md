@@ -26,16 +26,13 @@ Triggered when the grabber fails to grab an item.
 ## IDEA2 Fireworks & LEDs
 ### Description
 This project combines p5.js visuals with Arduino-based physical computing to create an interactive fireworks display. Users can press buttons to trigger fireworks of different colors on the screen, while corresponding LED lights of the same colors illuminate, creating a synchronized physical-digital experience. 
+![sketch2](sketch2.jpg)
 ### Features
 - **Fireworks Animation**: Dynamic, colorful fireworks displayed on the screen, created using p5.js.
 - **LED Synchronization**: Each firework color is matched with an LED of the same color.
 - **Button Inputs**: Physical buttons connected to an Arduino trigger both the on-screen fireworks and corresponding LEDs.
 - **Interactive Design**: Users control the experience by pressing buttons to "launch" fireworks.
-### Fireworks
-![fw1](fw1.jpg)
-![fw2](fw2.jpg)
-![fw3](fw3.jpg)
-![fw4](fw4.jpg)
+
 
 ## IDEA3 Music Visualization
 
