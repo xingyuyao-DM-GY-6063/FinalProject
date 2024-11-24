@@ -1,5 +1,5 @@
 # Milestone 1
-## IDEA1 an electronic claw machine
+## IDEA1 An Electronic Claw Machine
 
 ![clawmachine](clawmachine.png)
 - Use the joystick element to control the gripper on the screen, and then set a button to be pressed to grab downwards.
@@ -34,7 +34,7 @@ This project combines p5.js visuals with Arduino-based physical computing to cre
 - **Interactive Design**: Users control the experience by pressing buttons to "launch" fireworks.
 
 
-## IDEA3 Music Visualization
+## IDEA3 Music Visualization with Synced LEDs
 **LED Feedback for Synced Effects**  
 - Usage: Synchronize LEDs with the music's beat or visualization effects.  
 - LEDs could blink or pulse with the bassline or other key features of the music.LED 
