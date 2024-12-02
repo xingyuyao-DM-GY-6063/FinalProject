@@ -27,7 +27,7 @@ I draw it with Procreate.
 
 
 ### External data or library
-p5.js Libraries:
+p5.js Libraries:  
 **p5.serialport**: Used to communicate between Arduino and p5.js.  
 **p5.js Sound Library**:to play many of the sound effects I proposed in milestone1.
 
@@ -41,7 +41,7 @@ p5.js Libraries:
 ![real machine](realmachine.jpg)
 - Online interactive crane-catching game projects.
 ![claw fish](clawfish.png)
-[claw fish-youtube](https://www.youtube.com/watch?v=3sogBNn3INg)
+[claw fish-youtube](https://www.youtube.com/watch?v=3sogBNn3INg)  
 [claw fish-itch.io](https://davidczar.itch.io/clawfish)
 
 ### Plan for User Testing
@@ -53,12 +53,12 @@ Users interested in interactive games, possibly students or regular gamers.
 - Gather feedback: whether the operation of the crane machine is smooth and interesting.
 
 ### Short discussion of why my project is relevant:：
-- Relation to Readings:
-Douglas Rushkoff’s command: Explore the possibilities of new user interfaces.
+- **Relation to Readings**:  
+Douglas Rushkoff’s command: Explore the possibilities of new user interfaces.  
 Chris Crawford’s interactivity: Whether user input (joystick/buttons) can lead to meaningful feedback.
-- Connection to Society:
+- **Connection to Society**:  
 A look at how classic games can be revitalized through new technologies.
-- Personal Importance:
+- **Personal Importance**:  
 Share an interest in game development.  
 Explore the combination of electronic hardware and software.
 
