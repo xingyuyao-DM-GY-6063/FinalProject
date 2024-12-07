@@ -9,6 +9,9 @@ let dollImages = []; // 存储娃娃图片
 let dolls = [];      // 存储所有娃娃对象
 let caughtDoll = null;  // 存储被抓到的娃娃
 let showCaughtDollTimer = 0;  // 显示抓到娃娃的计时器
+let maxDropHeight;  // 爪子最大下降高度
+let energyBarWidth = 200;  // 能量条宽度
+let energyBarHeight = 30;  // 能量条高度
 
 // 娃娃类
 class Doll {
@@ -65,24 +68,29 @@ function preload() {
 
 function processSerialData(data) {
   let values = data.split(',');
-  if (values.length === 2) {
+  if (values.length === 3) {  // 现在有3个值
     let joystickValue = parseInt(values[0]);
     let buttonPressed = parseInt(values[1]) === 0;
+    let potValue = parseInt(values[2]);
     
-    // 只有当摇杆偏离中心位置足够远时才移动
+    // 调试输出
+    console.log("Button state:", values[1], buttonPressed);
+    
+    // 映射电位器值到下降高度
+    maxDropHeight = map(potValue, 0, 4095, height/4, height - 400);
+    
+    // 处理摇杆和按钮
     if (!isDropping) {
-      // 如果摇杆值远离中心点（3150）
       if (Math.abs(joystickValue - 3150) > 200) {
-        // 映射移动速度：离中心点越远，移动越快
         let moveSpeed = map(joystickValue, 0, 4095, -5, 5);
         clawX += moveSpeed;
         clawX = constrain(clawX, 0, width - 100);
       }
-      // 当摇杆在中心附近时，爪子保持在当前位置
     }
     
-    // 检测按钮按下
+    // 修改按钮判断逻辑
     if (buttonPressed && !isDropping) {
+      console.log("Button pressed, starting drop");
       isDropping = true;
     }
   }
@@ -100,6 +108,9 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   clawX = width/2;
   clawY = 100;
+  
+  // 初始化最大下降高度为默认值
+  maxDropHeight = height - 400;
   
   // 创建娃娃，增加边距
   let bgX = (width - (height * 220) / 314) / 2;
@@ -121,9 +132,31 @@ function setup() {
   connectButton.mousePressed(connectToSerial);
 }
 
+function drawEnergyBar() {
+  // 计算能量条位置（右上角）
+  let barX = width - energyBarWidth - 20;
+  let barY = 20;
+  
+  // 计算填充比例
+  let fillAmount = map(maxDropHeight, height/4, height - 400, 0, energyBarWidth);
+  
+  // 绘制能量条背景
+  push();
+  strokeWeight(3);
+  stroke(100);
+  fill(255, 255, 255, 200);
+  rect(barX, barY, energyBarWidth, energyBarHeight, 15);
+  
+  // 绘制能量条填充
+  noStroke();
+  fill(255, 100, 100);
+  rect(barX, barY, fillAmount, energyBarHeight, 15);
+  pop();
+}
+
 function draw() {
-    // 设置浅粉色背景
-    background(250, 225, 221);
+  background(250, 225, 221);
+  
   // 计算背景图片尺寸
   let bgHeight = height;
   let bgWidth = (height * 220) / 314;
@@ -138,16 +171,16 @@ function draw() {
     doll.draw();
   }
   
-  // 爪子下落逻辑
+  // 爪子下落逻辑修改
   if (isDropping) {
     clawY += 5;
-    if (clawY > height - 700) {
+    if (clawY > maxDropHeight) {  // 使用电位器控制的高度
       // 检查是否抓到娃娃
       for (let i = dolls.length - 1; i >= 0; i--) {
         if (dolls[i].checkCaught(clawX, clawY)) {
           caughtDoll = dolls[i];
-          showCaughtDollTimer = frameCount + 300; // 5秒 = 300帧
-          dolls.splice(i, 1); // 从数组中移除被抓到的娃娃
+          showCaughtDollTimer = frameCount + 300;
+          dolls.splice(i, 1);
           break;
         }
       }
@@ -155,6 +188,9 @@ function draw() {
       isDropping = false;
     }
   }
+  
+  // 绘制能量条
+  drawEnergyBar();
   
   // 绘制爪子
   image(clawImg, clawX, clawY, 200, 200);
