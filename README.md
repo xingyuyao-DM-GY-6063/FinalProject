@@ -1,3 +1,33 @@
+# Milestone3
+## Demo Video
+## Circuit Diagram
+[Circuit Diagram](https://app.cirkitdesigner.com/project/3aa7489d-ac4c-42a5-96a6-e85c72ac4112)
+![circuit](milestone3/circuit.png)
+
+## System Diagram
+1. **硬件部分 (Arduino)**
+- 摇杆模块（X轴控制、按钮输入）
+- 电位器（控制爪子下降高度）
+- Arduino开发板（处理输入并通过串口通信）
+2. **软件部分 (p5.js)**
+- 串口通信模块
+- 游戏画面渲染
+- 物理碰撞检测
+- 娃娃管理系统
+- UI系统（能量条显示）
+3. **数据流向**
+- Arduino → 串口 → p5.js
+- 用户输入 → 游戏状态更新 → 画面渲染
+
+## Problems I encountered
+![alt text](image.png)
+## What I am gonna do next
+- Add background music
+- Add sound effects
+- Add more dolls
+
+
+
 # Milestone 2
 ## Project Proposal, Planning and Organizing
 
@@ -12,8 +42,8 @@
 - Picture of a crane machine.  
 I draw it with Procreate.
 ![claw machine](cm.png)
-![procreate1](cm-drawing-0.png)
-![procreate2](cm-drawing-1.png)
+![procreate1](milestone2/cm-drawing-0.png)
+![procreate2](milestone2/cm-drawing-1.png)
 - Display Score.
 
 ### Circuit diagram
@@ -38,9 +68,9 @@ p5.js Libraries:
 
 ### Reference images, texts and projects
 - Images of real crane grabbers and how they work.
-![real machine](realmachine.jpg)
+![real machine](milestone2/realmachine.jpg)
 - Online interactive crane-catching game projects.
-![claw fish](clawfish.png)
+![claw fish](milestone2/clawfish.png)
 [claw fish-youtube](https://www.youtube.com/watch?v=3sogBNn3INg)  
 [claw fish-itch.io](https://davidczar.itch.io/clawfish)
 

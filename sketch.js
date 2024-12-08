@@ -20,9 +20,9 @@ class Doll {
     this.x = x;
     this.y = y;
     this.rotation = 0;
-    this.speed = random(0.5, 1.5);
+    this.speed = random(1, 1.5);
     this.direction = random([-1, 1]);
-    this.size = 150;
+    this.size = 120;
   }
   
   update() {
