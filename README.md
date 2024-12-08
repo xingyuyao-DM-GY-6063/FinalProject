@@ -1,27 +1,38 @@
 # Milestone3
 ## Demo Video
+[demo](https://www.youtube.com/shorts/ZUPpSABc6Ig)
 ## Circuit Diagram
 [Circuit Diagram](https://app.cirkitdesigner.com/project/3aa7489d-ac4c-42a5-96a6-e85c72ac4112)
 ![circuit](milestone3/circuit.png)
 
 ## System Diagram
-1. **硬件部分 (Arduino)**
-- 摇杆模块（X轴控制、按钮输入）
-- 电位器（控制爪子下降高度）
-- Arduino开发板（处理输入并通过串口通信）
-2. **软件部分 (p5.js)**
-- 串口通信模块
-- 游戏画面渲染
-- 物理碰撞检测
-- 娃娃管理系统
-- UI系统（能量条显示）
-3. **数据流向**
-- Arduino → 串口 → p5.js
-- 用户输入 → 游戏状态更新 → 画面渲染
+1. **Hardware Part (Arduino)**
+- Joystick Module (X-axis control, button input)
+- Potentiometer (controls the height of the claw's descent)
+- Arduino Board (processes input and communicates via serial)
+2. **Software Part (p5.js)**
+- Serial Communication Module
+- Game Screen Rendering
+- Physical Collision Detection
+- Doll Management System
+- UI System (energy bar display)
+3. **Data Flow**
+- Arduino → Serial → p5.js
+- User Input → Game State Update → Screen Rendering
 
 ## Problems I encountered
-![alt text](image.png)
+1. **Screen Adaptation Issues**
+- Problem: Inconsistent doll positioning when opening the page on different displays (external monitor vs. laptop screen)
+- Solutions:
+  - Use relative positioning instead of absolute pixel values
+  - Calculate positions based on windowWidth and windowHeight
+  - Add windowResized() function to handle window size changes
+  - Implement percentage-based layouts for cross-device consistency
+![image0](milestone3/image0.png)
+![image1](milestone3/image1.png)
+
 ## What I am gonna do next
+- fix the screen adaptation problem
 - Add background music
 - Add sound effects
 - Add more dolls
