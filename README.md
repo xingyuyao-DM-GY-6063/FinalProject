@@ -35,7 +35,6 @@
 - fix the screen adaptation problem
 - Add background music
 - Add sound effects
-- Add more dolls
 
 
 
