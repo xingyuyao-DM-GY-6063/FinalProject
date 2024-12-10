@@ -22,12 +22,9 @@
 
 ## Problems I encountered
 1. **Screen Adaptation Issues**
-- Problem: Inconsistent doll positioning when opening the page on different displays (external monitor vs. laptop screen)
-- Solutions:
-  - Use relative positioning instead of absolute pixel values
-  - Calculate positions based on windowWidth and windowHeight
-  - Add windowResized() function to handle window size changes
-  - Implement percentage-based layouts for cross-device consistency
+- Problem: Inconsistent doll positioning when opening the page on different displays (external monitor vs. laptop screen 
+  - I have another external monitor , and my project looks different on different monitors)
+
 ![image0](milestone3/image0.png)
 ![image1](milestone3/image1.png)
 
