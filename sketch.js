@@ -15,14 +15,14 @@ let energyBarHeight = 30;  // 能量条高度
 
 // 娃娃类
 class Doll {
-  constructor(img, x, y) {
+  constructor(img, x, y, size) {
     this.img = img;
     this.x = x;
     this.y = y;
     this.rotation = 0;
-    this.speed = random(1, 1.5);
+    this.speed = windowWidth * 0.001; // 速度也使用相对值
     this.direction = random([-1, 1]);
-    this.size = 120;
+    this.size = size;
   }
   
   update() {
@@ -32,12 +32,12 @@ class Doll {
     // 随机移动
     this.x += this.speed * this.direction;
     
-    // 调整边界检测范围
-    let bgX = (width - (height * 220) / 314) / 2;
-    let bgWidth = (height * 220) / 314;
+    // 使用相对值进行边界检测
+    let gameAreaWidth = min(windowWidth * 0.8, (windowHeight * 220) / 314);
+    let gameAreaX = (windowWidth - gameAreaWidth) / 2;
     
-    // 增加边界检测的边距
-    if (this.x < bgX + 250 || this.x > bgX + bgWidth - 250) {
+    if (this.x < gameAreaX + gameAreaWidth * 0.3 || 
+        this.x > gameAreaX + gameAreaWidth * 0.7) {
       this.direction *= -1;
     }
   }
@@ -106,28 +106,31 @@ function connectToSerial() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  clawX = width/2;
-  clawY = 100;
   
-  // 初始化最大下降高度为默认值
-  maxDropHeight = height - 400;
+  // 添加maxDropHeight的初始值
+  maxDropHeight = height/4;  // 设置默认值为最小下降高度
   
-  // 创建娃娃，增加边距
-  let bgX = (width - (height * 220) / 314) / 2;
-  let bgWidth = (height * 220) / 314;
+  // 计算背景和游戏区域的尺寸
+  let gameAreaWidth = min(windowWidth * 0.8, (windowHeight * 220) / 314); // 限制最大宽度
+  let gameAreaHeight = (gameAreaWidth * 314) / 220;
+  let gameAreaX = (windowWidth - gameAreaWidth) / 2;
   
+  // 初始化爪子位置为相对位置
+  clawX = gameAreaX + gameAreaWidth * 0.5;
+  clawY = gameAreaHeight * 0.1;
+  
+  // 创建娃娃时使用相对位置
   for (let i = 0; i < dollImages.length; i++) {
-    // 增加左右边距（从75增加到200）
-    let x = random(bgX + 250, bgX + bgWidth - 250);
-    // 调整垂直位置范围
-    let y = random(height/2 - 150, height - 400);
-    dolls.push(new Doll(dollImages[i], x, y));
+    let x = random(gameAreaX + gameAreaWidth * 0.3, gameAreaX + gameAreaWidth * 0.7);
+    let y = random(gameAreaHeight * 0.4, gameAreaHeight * 0.7);
+    let dollSize = min(gameAreaWidth, gameAreaHeight) * 0.15; // 娃娃大小随屏幕缩放
+    dolls.push(new Doll(dollImages[i], x, y, dollSize));
   }
   
   // 设置串口
   readyToReceive = false;
   mSerial = createSerial();
-  connectButton = createButton("连接串口");
+  connectButton = createButton("connect");
   connectButton.position(width / 2, height / 2);
   connectButton.mousePressed(connectToSerial);
 }
@@ -137,8 +140,9 @@ function drawEnergyBar() {
   let barX = width - energyBarWidth - 20;
   let barY = 20;
   
-  // 计算填充比例
-  let fillAmount = map(maxDropHeight, height/4, height - 400, 0, energyBarWidth);
+  // 确保maxDropHeight有有效值
+  let currentHeight = maxDropHeight || height/4;  // 如果maxDropHeight未定义，使用默认值
+  let fillAmount = map(currentHeight, height/4, height - 400, 0, energyBarWidth);
   
   // 绘制能量条背景
   push();
@@ -217,5 +221,24 @@ function draw() {
     serialData = trim(serialData);
     if (!serialData) return;
     processSerialData(serialData);
+  }
+}
+
+// 添加窗口大小改变处理函数
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  // 重新计算所有位置
+  let gameAreaWidth = min(windowWidth * 0.8, (windowHeight * 220) / 314);
+  let gameAreaX = (windowWidth - gameAreaWidth) / 2;
+  
+  // 更新爪子位置
+  clawX = constrain(clawX, gameAreaX, gameAreaX + gameAreaWidth - 200);
+  
+  // 更新娃娃位置
+  for (let doll of dolls) {
+    doll.x = constrain(doll.x, 
+      gameAreaX + gameAreaWidth * 0.2, 
+      gameAreaX + gameAreaWidth * 0.8
+    );
   }
 }
