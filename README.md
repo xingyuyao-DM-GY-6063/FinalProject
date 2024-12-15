@@ -1,7 +1,7 @@
 # Final Documentation
 
 ## System Diagram
-![system diagram](milestone4/systemDiagram.png)
+![system diagram](milestone3/systemDiagram.png)
 
 
 ## FSM (Finite State Machine) Diagram
