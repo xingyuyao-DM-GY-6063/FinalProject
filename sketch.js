@@ -94,7 +94,7 @@ function processSerialData(data) {
     console.log("Button state:", values[1], buttonPressed);
     
     // 映射电位器值到下降高度
-    maxDropHeight = map(potValue, 0, 4095, height/4, height - 400);
+    maxDropHeight = map(potValue, 0, 4095, height/4, height - 300);
     
     // 处理摇杆和按钮
     if (!isDropping) {
@@ -253,7 +253,7 @@ function draw() {
   drawEnergyBar();
   
   // 绘制爪子
-  image(clawImg, clawX, clawY, 200, 200);
+  image(clawImg, clawX, clawY, 150, 150);
   
   // 显示抓到的娃娃
   if (caughtDoll && frameCount < showCaughtDollTimer) {
@@ -261,7 +261,7 @@ function draw() {
     translate(width/2, height/2);
     rotate(frameCount * 0.02);
     imageMode(CENTER);
-    image(caughtDoll.img, 0, 0, 300, 300); // 放大显示
+    image(caughtDoll.img, 0, 0, 250, 250); // 放大显示
     pop();
   }
   

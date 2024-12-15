@@ -1,23 +1,8 @@
 # Final Documentation
 
 ## System Diagram
-1. **Hardware Components (Arduino)**
-   - Joystick Module (X-axis control, button input)
-   - Potentiometer (controls claw descent height)
-   - Arduino Board (processes input and serial communication)
+![system diagram](milestone4/systemDiagram.png)
 
-2. **Software Components (p5.js)**
-   - Serial Communication Module
-   - Game Screen Rendering
-   - Physics Collision Detection
-   - Doll Management System
-   - UI System (energy bar, score display)
-   - Audio System (background music and sound effects)
-
-3. **Data Flow**
-   - Arduino → Serial → p5.js
-   - User Input → Game State Update → Screen Rendering
-   - Game Events → Audio Feedback
 
 ## FSM (Finite State Machine) Diagram
 ![FSM](milestone3/FSM.png)
