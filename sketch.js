@@ -12,6 +12,14 @@ let showCaughtDollTimer = 0;  // 显示抓到娃娃的计时器
 let maxDropHeight;  // 爪子最大下降高度
 let energyBarWidth = 200;  // 能量条宽度
 let energyBarHeight = 30;  // 能量条高度
+// music
+let bgMusic;
+let grabberMovementSound;
+let buttonClickSound; 
+let gripperLowerSound;
+let successGrabSound;
+let failGrabSound;
+let audioInitialized = false;
 
 // 娃娃类
 class Doll {
@@ -64,6 +72,15 @@ function preload() {
   for (let i = 1; i <= 11; i++) {
     dollImages.push(loadImage(`assets/doll${i}.png`));
   }
+
+  // 加载音频文件
+  soundFormats('mp3');
+  bgMusic = loadSound('assets/bgMusic.mp3');
+  grabberMovementSound = loadSound('assets/Lower.mp3');
+  buttonClickSound = loadSound('assets/buttonClick.mp3');
+  gripperLowerSound = loadSound('assets/Lower.mp3');
+  successGrabSound = loadSound('assets/success.mp3');
+  failGrabSound = loadSound('assets/fail.mp3');
 }
 
 function processSerialData(data) {
@@ -93,6 +110,20 @@ function processSerialData(data) {
       console.log("Button pressed, starting drop");
       isDropping = true;
     }
+
+     // 摇杆移动音效
+     if (!isDropping && Math.abs(joystickValue - 3150) > 200) {
+      if (!grabberMovementSound.isPlaying()) {
+        grabberMovementSound.play();
+      }
+    }
+    
+    // 按钮按下音效
+    if (buttonPressed && !isDropping) {
+      buttonClickSound.play();
+      isDropping = true;
+      gripperLowerSound.play();
+    }
   }
 }
 
@@ -101,6 +132,21 @@ function connectToSerial() {
     mSerial.open(9600);
     readyToReceive = true;
     connectButton.hide();
+    
+    // 在用户点击连接按钮后初始化音频
+    if (!audioInitialized) {
+      userStartAudio();
+      // 调整各个音效的音量 (0.0 到 1.0)
+      bgMusic.setVolume(0.5);        // 背景音乐保持适中
+      grabberMovementSound.setVolume(0.8);  // 提高移动音效
+      buttonClickSound.setVolume(0.8);      // 提高按钮音效
+      gripperLowerSound.setVolume(0.8);     // 提高下降音效
+      successGrabSound.setVolume(1.0);      // 成功音效最大音量
+      failGrabSound.setVolume(0.8);         // 提高失败音效
+      
+      bgMusic.loop();
+      audioInitialized = true;
+    }
   }
 }
 
@@ -133,6 +179,8 @@ function setup() {
   connectButton = createButton("connect");
   connectButton.position(width / 2, height / 2);
   connectButton.mousePressed(connectToSerial);
+
+     
 }
 
 function drawEnergyBar() {
@@ -156,6 +204,8 @@ function drawEnergyBar() {
   fill(255, 100, 100);
   rect(barX, barY, fillAmount, energyBarHeight, 15);
   pop();
+
+
 }
 
 function draw() {
@@ -178,15 +228,21 @@ function draw() {
   // 爪子下落逻辑修改
   if (isDropping) {
     clawY += 5;
-    if (clawY > maxDropHeight) {  // 使用电位器控制的高度
+    if (clawY > maxDropHeight) {
       // 检查是否抓到娃娃
+      let caught = false;
       for (let i = dolls.length - 1; i >= 0; i--) {
         if (dolls[i].checkCaught(clawX, clawY)) {
           caughtDoll = dolls[i];
           showCaughtDollTimer = frameCount + 300;
           dolls.splice(i, 1);
+          caught = true;
+          successGrabSound.play();
           break;
         }
+      }
+      if (!caught) {
+        failGrabSound.play();
       }
       clawY = 100;
       isDropping = false;

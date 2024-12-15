@@ -1,3 +1,96 @@
+# Final Documentation
+
+## System Diagram
+1. **Hardware Components (Arduino)**
+   - Joystick Module (X-axis control, button input)
+   - Potentiometer (controls claw descent height)
+   - Arduino Board (processes input and serial communication)
+
+2. **Software Components (p5.js)**
+   - Serial Communication Module
+   - Game Screen Rendering
+   - Physics Collision Detection
+   - Doll Management System
+   - UI System (energy bar, score display)
+   - Audio System (background music and sound effects)
+
+3. **Data Flow**
+   - Arduino → Serial → p5.js
+   - User Input → Game State Update → Screen Rendering
+   - Game Events → Audio Feedback
+
+## FSM (Finite State Machine) Diagram
+![FSM](milestone3/FSM.png)
+
+
+## Circuit Diagram
+![circuit](milestone3/circuit.png)
+
+## External Libraries and Data
+1. **p5.js Libraries**
+   - p5.serialport: Arduino communication
+   - p5.sound: Audio playback
+2. **Custom Assets**
+   - Doll images
+   - Sound effects
+   - Background music
+   - UI elements
+
+## Hardware Components
+1. **Input Devices**
+   - Joystick: Controls claw movement
+   - Button: Triggers grab action
+   - Potentiometer: Controls drop height
+2. **Connection**
+   - Arduino for input processing
+   - Serial communication for data transfer
+
+## Project Relevance
+
+### Connection to Readings
+1. **Douglas Rushkoff's Program or Be Programmed**
+   - Explores human-computer interaction through physical controls
+   - Demonstrates the importance of understanding both hardware and software
+
+2. **Chris Crawford on Interactivity**
+   - Implements meaningful user feedback through visual and audio responses
+   - Creates a cycle of listening, thinking, and speaking between user and system
+
+### Societal Connection
+1. **Gaming Accessibility**
+   - Makes arcade experiences accessible at home
+   - Combines physical and digital interaction
+
+2. **Educational Value**
+   - Demonstrates basic physics concepts
+   - Introduces programming and electronics concepts
+
+### Personal Importance
+1. **Skill Development**
+   - Integration of hardware and software
+   - Real-time system design
+   - User interface design
+
+2. **Creative Expression**
+   - Reimagining classic arcade games
+   - Creating engaging user experiences
+
+## User Testing Feedback
+1. **Positive Feedback**
+   - Intuitive controls
+   - Engaging sound effects
+   - Visual feedback clarity
+
+2. **Areas for Improvement**
+   - Screen adaptation across different displays
+   - Energy bar visibility
+   - Sound volume balance
+
+3. **Implemented Changes**
+   - Added relative positioning for cross-display compatibility
+   - Adjusted sound effects volume
+   - Enhanced visual feedback for user actions
+   
 # Milestone3
 ## Demo Video
 [demo](https://www.youtube.com/shorts/ZUPpSABc6Ig)
