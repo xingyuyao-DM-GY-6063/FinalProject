@@ -190,7 +190,7 @@ function drawEnergyBar() {
   
   // 确保maxDropHeight有有效值
   let currentHeight = maxDropHeight || height/4;  // 如果maxDropHeight未定义，使用默认值
-  let fillAmount = map(currentHeight, height/4, height - 400, 0, energyBarWidth);
+  let fillAmount = map(currentHeight, height/4, height - 300, 0, energyBarWidth);
   
   // 绘制能量条背景
   push();
